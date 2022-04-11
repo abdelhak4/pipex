@@ -25,13 +25,16 @@ void	ft_exc_cmd1(t_cmd *cmd)
 	if (path == NULL)
 	{
 		ft_free(cmd->paths);
-		ft_free(cmd->cmd1);
 		perror(cmd->cmd1[0]);
+		ft_free(cmd->cmd1);
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
+		close(cmd->fds[0]);
+		dup2(cmd->fd1, 0);
+		dup2(cmd->fds[1], 1);
+		close(cmd->fd1);
 		execve(path, cmd->cmd1, NULL);
-		printf("exe cmd1");
 	}
 }

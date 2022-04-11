@@ -76,12 +76,9 @@ void	ft_exec(t_cmd *cmd)
 	{
 		ft_exc_cmd2(cmd);
 	}
-	else if (cmd->pid > 0 && cmd->pid2 > 0)
-	{
-		waitpid(cmd->pid, &cmd->stat, 0);
-		waitpid(cmd->pid2, &cmd->stat, 0);
-		printf("this is parent \n");
-	}
+	waitpid(cmd->pid, &cmd->stat, 0);
+	waitpid(cmd->pid2, &cmd->stat, 0);
+	printf("this is parent \n");
 }
 
 char 	**get_cmd2(char **av)
@@ -111,9 +108,10 @@ int	main(int ac, char *av[], char *evp[])
 		cmd->cmd2 = get_cmd2(av);
 		cmd->paths = get_paths(evp);
 		cmd->fd1 = open(av[1], O_RDONLY);
-		cmd->fd2= open(av[4], O_CREAT, O_RDWR);
+		cmd->fd2= open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
 		if (cmd->fd1 == -1 && cmd->fd2 == -1)
 		{
+			perror("open");
 			ft_free(cmd->cmd1);
 			free(cmd->paths);
 			exit(EXIT_FAILURE);

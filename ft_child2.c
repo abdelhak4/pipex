@@ -42,5 +42,11 @@ void	ft_exc_cmd2(t_cmd *cmd)
 		exit(EXIT_FAILURE);
 	}
 	else
+	{
+		close(cmd->fds[1]);
+		dup2(cmd->fd2, 1);
+		dup2(cmd->fds[0], 0);
+		close(cmd->fd2);
 		execve(path, cmd->cmd2, NULL);
+	}
 }
