@@ -11,7 +11,7 @@ all : $(NAME)
 
 $(NAME) : $(SRCS)
 	$(OTHERS)
-	cc -fsanitize=address $(SRCS) -o $(NAME)
+	cc $(SRCS) -o $(NAME)
 clean :
 	cd libft && make clean && cd ..
 fclean : clean

@@ -27,7 +27,7 @@ char	*check_access_of_cmd2(char **cmd, char **paths)
 			free(full_path);
 		i++;
 	}
-	return (NULL);
+	return (cmd[0]);
 }
 
 void	ft_exc_cmd2(t_cmd *cmd, char **env)
@@ -35,6 +35,7 @@ void	ft_exc_cmd2(t_cmd *cmd, char **env)
 	char	*path;
 
 	path = check_access_of_cmd2(cmd->cmd2, cmd->paths);
+	ft_free(cmd->paths);
 	if (path == NULL)
 	{
 		perror(cmd->cmd2[0]);

@@ -85,6 +85,9 @@ int	main(int ac, char *av[], char *evp[])
 		if (cmd->cmd1 == NULL || cmd->cmd2 == NULL)
 		{
 			perror("Err");
+			ft_free(cmd->cmd1);
+			ft_free(cmd->cmd2);
+			free(cmd);
 			exit(EXIT_FAILURE);
 		}
 		cmd->paths = get_paths(evp);
@@ -94,7 +97,9 @@ int	main(int ac, char *av[], char *evp[])
 		{
 			perror("open");
 			ft_free(cmd->cmd1);
-			free(cmd->paths);
+			ft_free(cmd->cmd2);
+			ft_free(cmd->paths);
+			free(cmd);
 			exit(EXIT_FAILURE);
 		}
 		ft_exec(cmd, evp);

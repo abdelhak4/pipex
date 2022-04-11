@@ -1,0 +1,10 @@
+Makefile
+file
+ft_child.c
+ft_child2.c
+libft
+outfile
+pipex
+pipex.c
+pipex.h
+pipex_utils.c
