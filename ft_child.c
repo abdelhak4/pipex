@@ -17,7 +17,7 @@ char	*check_access_of_cmd(char **cmd, char **paths)
 	}
 	return (NULL);
 }
-void	ft_exc_cmd1(t_cmd *cmd)
+void	ft_exc_cmd1(t_cmd *cmd, char **env)
 {
 	char	*path;
 
@@ -32,9 +32,9 @@ void	ft_exc_cmd1(t_cmd *cmd)
 	else
 	{
 		close(cmd->fds[0]);
-		dup2(cmd->fd1, 0);
-		dup2(cmd->fds[1], 1);
-		close(cmd->fd1);
-		execve(path, cmd->cmd1, NULL);
+		dup2(cmd->fd1, STDIN_FILENO);
+		dup2(cmd->fds[1], STDOUT_FILENO);
+		close(cmd->fd2);
+		execve(path, cmd->cmd1, env);
 	}
 }

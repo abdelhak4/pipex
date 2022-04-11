@@ -1,6 +1,7 @@
 NAME = pipex
 SRCS = pipex.c \
-	ft_child.c ft_child2.c libft/libft.a
+	ft_child.c ft_child2.c libft/libft.a \
+	pipex_utils.c
 
 CFLAGS = -Wall -Werror -Wextra
 
