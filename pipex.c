@@ -4,7 +4,7 @@
  * 			- The child process has a unique process ID
  * 			- The child process has a different parent process ID (i.e., the
  * 										.... process ID of the parent process).
- *
+ *		Todo: check return of split is not null ?
  */
 
 void	ft_free(char **str)
@@ -20,46 +20,10 @@ void	ft_free(char **str)
 	}
 }
 
-void	ft_exec(char **cmd, char **paths, int fd1, int fd2)
+char	**get_paths(char **env)
 {
-	int pid;
-	int pid2;
-
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("Fork: ");
-		ft_free(cmd);
-		ft_free(paths);
-		exit(EXIT_FAILURE);
-	}
-	else if (pid != 0)   /* parent process */
-	{
-		pid2 = fork();
-		if (pid2 < 0)
-		{
-			perror("Fork: ");
-			ft_free(cmd);
-			ft_free(paths);
-			exit(EXIT_FAILURE);
-		}
-		else if (pid2 == 0)
-			ft_exc_cmd1(fd1, cmd, paths);
-		else
-		{
-			//here the child 1 will exec
-			printf("child \n");
-		}
-	}
-	else // child
-	{
-		printf("this is parent \n");
-	}
-}
-
-char	**get_paths(char **env, char **paths)
-{
-	int i;
+	char	**paths;
+	int		i;
 
 	i = 0;
 	paths = ft_split(env[i], ':');
@@ -71,47 +35,90 @@ char	**get_paths(char **env, char **paths)
 	return (paths);
 }
 
-char 	**parsing(char **av, int ac, char **cmd)
+void	ft_exec(t_cmd *cmd)
 {
-	int j;
-	int i;
+	int i = 0;
 
-	j = 2;
-	i = 0;
-	cmd = malloc(sizeof(char *) * 2);
-	while (j < ac - 1)
+	cmd->re = pipe(cmd->fds);
+	if (cmd->re < 0)
 	{
-		cmd[i] = ft_strdup(av[j]);
-		if (cmd[i] == NULL)
-		{
-			exit(EXIT_FAILURE);
-		}
-		i++;
-		j++;
+		ft_free(cmd->paths);
+		ft_free(cmd->cmd1);
+		ft_free(cmd->cmd2);
+		perror("Pipe");
+		exit(EXIT_FAILURE);
 	}
+	cmd->pid = fork();
+	if (cmd->pid == -1)
+	{
+		perror("Fork: ");
+		ft_free(cmd->paths);
+		ft_free(cmd->cmd1);
+		ft_free(cmd->cmd2);
+		exit(EXIT_FAILURE);
+	}
+	/* child process 1*/
+	else if (cmd->pid == 0)
+	{
+		ft_exc_cmd1(cmd);
+	}
+	cmd->pid2 = fork();
+	if (cmd->pid2 < 0)
+	{
+		perror("Fork: ");
+		ft_free(cmd->paths);
+		ft_free(cmd->cmd1);
+		ft_free(cmd->cmd2);
+		exit(EXIT_FAILURE);
+	}
+	/* child process 2 */
+	else if (cmd->pid2 == 0)
+	{
+		ft_exc_cmd2(cmd);
+	}
+	else if (cmd->pid > 0 && cmd->pid2 > 0)
+	{
+		waitpid(cmd->pid, &cmd->stat, 0);
+		waitpid(cmd->pid2, &cmd->stat, 0);
+		printf("this is parent \n");
+	}
+}
+
+char 	**get_cmd2(char **av)
+{
+	char **cmd2;
+
+	cmd2 = ft_split(av[3], ' ');
+	return cmd2;
+}
+
+char 	**get_cmd1(char **av)
+{
+	char **cmd;
+
+	cmd = ft_split(av[2], ' ');
 	return cmd;
 }
 
 int	main(int ac, char *av[], char *evp[])
 {
-	int 	fd1;
-	int 	fd2;
-	char	**paths;
-	char	**cmd;
+	t_cmd *cmd;
 
+	cmd = malloc(sizeof(t_cmd));
 	if (ac == 5)
 	{
-		cmd = parsing(av, ac, cmd);
-		paths = get_paths(evp, paths);
-		fd1 = open(av[0], O_RDONLY);
-		fd2 = open(av[0], O_CREAT, O_RDWR);
-		if (fd1 == -1 && fd2 == -1)
+		cmd->cmd1 = get_cmd1(av);
+		cmd->cmd2 = get_cmd2(av);
+		cmd->paths = get_paths(evp);
+		cmd->fd1 = open(av[1], O_RDONLY);
+		cmd->fd2= open(av[4], O_CREAT, O_RDWR);
+		if (cmd->fd1 == -1 && cmd->fd2 == -1)
 		{
-			ft_free(cmd);
-			free(paths);
+			ft_free(cmd->cmd1);
+			free(cmd->paths);
 			exit(EXIT_FAILURE);
 		}
-		ft_exec(cmd, paths, fd1, fd2);
+		ft_exec(cmd);
 	}
 	else
 	{
