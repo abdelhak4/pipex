@@ -21,8 +21,8 @@ typedef struct s_cmd
 	int pid2;
 }	t_cmd;
 
-void	ft_exc_cmd1(t_cmd *cmd, char **env);
-void	ft_exc_cmd2(t_cmd *cmd, char **env);
+void	ft_exc_cmd1(t_cmd *cmd);
+void	ft_exc_cmd2(t_cmd *cmd);
 void	ft_free(char **str);
 void	ft_err_pid(t_cmd *cmd);
 void	_err_re(t_cmd *cmd);

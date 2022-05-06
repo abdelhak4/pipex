@@ -15,9 +15,11 @@ char	*check_access_of_cmd(char **cmd, char **paths)
 			free(full_path);
 		i++;
 	}
-	return (cmd[0]);
+	if (access(cmd[0], F_OK) == 0)
+		return cmd[0];
+	return (NULL);
 }
-void	ft_exc_cmd1(t_cmd *cmd, char **env)
+void	ft_exc_cmd1(t_cmd *cmd)
 {
 	char	*path;
 
@@ -35,6 +37,6 @@ void	ft_exc_cmd1(t_cmd *cmd, char **env)
 		dup2(cmd->fd1, STDIN_FILENO);
 		dup2(cmd->fds[1], STDOUT_FILENO);
 		close(cmd->fd2);
-		execve(path, cmd->cmd1, env);
+		execve(path, cmd->cmd1, NULL);
 	}
 }

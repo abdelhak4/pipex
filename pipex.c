@@ -19,23 +19,41 @@ void	ft_free(char **str)
 		i++;
 	}
 }
+int	ft_strline(char **paths)
+{
+	int i;
 
+	i = 0;
+	while (paths[i])
+		i++;
+	return (i);
+}
 char	**get_paths(char **env)
 {
+	char	*path_paths;
+	char	**tmp;
 	char	**paths;
 	int		i;
 
 	i = 0;
-	paths = ft_split(env[i], ':');
+	while (ft_strnstr(env[i], "PATH=", 5) == NULL)
+		i++;
+	path_paths = ft_strnstr(env[i], "PATH=", 5);
+	i = 0;
+	paths = ft_split(path_paths, ':');
+	tmp = malloc(sizeof(char*) * (ft_strline(paths) + 1));
 	while (paths[i])
 	{
-		paths[i] = ft_strjoin(paths[i], "/");
+		tmp[i] = ft_strjoin(paths[i], "/");
+		free(paths[i]);
 		i++;
 	}
-	return (paths);
+	free (paths);
+	tmp[i] = 0;
+	return (tmp);
 }
 
-void	ft_exec(t_cmd *cmd, char **env)
+void	ft_exec(t_cmd *cmd)
 {
 	cmd->re = pipe(cmd->fds);
 	if (cmd->re < 0)
@@ -44,12 +62,12 @@ void	ft_exec(t_cmd *cmd, char **env)
 	if (cmd->pid == -1)
 		ft_err_pid(cmd);
 	else if (cmd->pid == 0)
-		ft_exc_cmd1(cmd, env);
+		ft_exc_cmd1(cmd);
 	cmd->pid2 = fork();
 	if (cmd->pid2 < 0)
 		_err_pid2(cmd);
 	else if (cmd->pid2 == 0)
-		ft_exc_cmd2(cmd, env);
+		ft_exc_cmd2(cmd);
 
 	close(cmd->fds[0]);
 	close(cmd->fds[1]);
@@ -75,6 +93,7 @@ char 	**get_cmd1(char **av)
 
 int	main(int ac, char *av[], char *evp[])
 {
+
 	t_cmd *cmd;
 
 	cmd = malloc(sizeof(t_cmd));
@@ -93,7 +112,7 @@ int	main(int ac, char *av[], char *evp[])
 		cmd->paths = get_paths(evp);
 		cmd->fd1 = open(av[1], O_RDONLY);
 		cmd->fd2= open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-		if (cmd->fd1 == -1 && cmd->fd2 == -1)
+		if (cmd->fd1 == -1 || cmd->fd2 == -1)
 		{
 			perror("open");
 			ft_free(cmd->cmd1);
@@ -102,10 +121,11 @@ int	main(int ac, char *av[], char *evp[])
 			free(cmd);
 			exit(EXIT_FAILURE);
 		}
-		ft_exec(cmd, evp);
+		ft_exec(cmd);
 	}
 	else
 	{
+
 		perror("Error");
 		return -1;
 	}

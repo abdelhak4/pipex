@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="16cf5aa7-058a-4472-97c2-90fbe29d358e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pipex.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_child.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_child.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_child2.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_child2.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/libft.a" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipex.c" beforeDir="false" afterPath="$PROJECT_DIR$/pipex.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipex.h" beforeDir="false" afterPath="$PROJECT_DIR$/pipex.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripte.sh" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Makefile" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ft_child.c" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ft_child2.c" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/libft/Makefile" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pipex.c" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pipex.h" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MakefileLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2021" />
+    <option name="minorVersion" value="3.4" />
+  </component>
+  <component name="ProjectId" id="27WH4eEBZRf85jntVjHu5EpUWb9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="16cf5aa7-058a-4472-97c2-90fbe29d358e" name="Changes" comment="" />
+      <created>1649428734847</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649428734847</updated>
+      <workItem from="1649428737094" duration="1478000" />
+      <workItem from="1649436475395" duration="1000" />
+      <workItem from="1649441995103" duration="1346000" />
+      <workItem from="1649514272216" duration="5308000" />
+      <workItem from="1649534670442" duration="4000" />
+      <workItem from="1649541625347" duration="818000" />
+      <workItem from="1649600423676" duration="5000" />
+      <workItem from="1649605295069" duration="438000" />
+      <workItem from="1649605891699" duration="2018000" />
+      <workItem from="1649610666561" duration="833000" />
+      <workItem from="1649620032283" duration="5000" />
+      <workItem from="1649628851590" duration="99000" />
+      <workItem from="1649637028902" duration="3756000" />
+      <workItem from="1649646094807" duration="2905000" />
+      <workItem from="1649654445213" duration="5000" />
+      <workItem from="1649688217900" duration="1761000" />
+      <workItem from="1649690239819" duration="1562000" />
+      <workItem from="1649692274767" duration="2011000" />
+      <workItem from="1649700294236" duration="71000" />
+      <workItem from="1649706967943" duration="729000" />
+      <workItem from="1649715884211" duration="921000" />
+      <workItem from="1649726763790" duration="2000" />
+      <workItem from="1649863224901" duration="2713000" />
+      <workItem from="1649869452943" duration="2917000" />
+      <workItem from="1649879736129" duration="268000" />
+      <workItem from="1649885958766" duration="6000" />
+      <workItem from="1649949168483" duration="166000" />
+      <workItem from="1649975087561" duration="582000" />
+      <workItem from="1650023078706" duration="8000" />
+      <workItem from="1650029121126" duration="171000" />
+      <workItem from="1650048773502" duration="112000" />
+      <workItem from="1650296100862" duration="5429000" />
+      <workItem from="1650581527229" duration="22000" />
+      <workItem from="1650581568823" duration="36000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

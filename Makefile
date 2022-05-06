@@ -3,15 +3,15 @@ SRCS = pipex.c \
 	ft_child.c ft_child2.c libft/libft.a \
 	pipex_utils.c
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
 
-OTHERS = cd libft && make && cd ..
+.SILENT: OTHERS = cd libft && make && cd ..
 
 all : $(NAME)
 
 $(NAME) : $(SRCS)
 	$(OTHERS)
-	cc $(SRCS) -o $(NAME)
+	cc $(CFLAGS) $(SRCS) -o $(NAME)
 clean :
 	cd libft && make clean && cd ..
 fclean : clean
