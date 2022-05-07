@@ -15,7 +15,7 @@
 char	*check_access_of_cmd2(char **cmd, char **paths)
 {
 	char	*full_path;
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (paths[i])
@@ -33,7 +33,7 @@ char	*check_access_of_cmd2(char **cmd, char **paths)
 		i++;
 	}
 	if (access(cmd[0], F_OK) == 0)
-		return cmd[0];
+		return (cmd[0]);
 	return (NULL);
 }
 

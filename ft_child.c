@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_child.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-mous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/07 07:01:20 by ael-mous          #+#    #+#             */
+/*   Updated: 2022/05/07 07:01:25 by ael-mous         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 char	*check_access_of_cmd(char **cmd, char **paths)
 {
 	char	*full_path;
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (paths[i])
@@ -16,9 +28,10 @@ char	*check_access_of_cmd(char **cmd, char **paths)
 		i++;
 	}
 	if (access(cmd[0], F_OK) == 0)
-		return cmd[0];
+		return (cmd[0]);
 	return (NULL);
 }
+
 void	ft_exc_cmd1(t_cmd *cmd)
 {
 	char	*path;

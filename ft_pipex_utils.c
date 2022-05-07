@@ -1,40 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   ft_pipex_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-mous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 15:19:00 by ael-mous          #+#    #+#             */
-/*   Updated: 2022/04/11 15:19:03 by ael-mous         ###   ########.fr       */
+/*   Created: 2022/05/07 07:12:36 by ael-mous          #+#    #+#             */
+/*   Updated: 2022/05/07 07:12:38 by ael-mous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_err_pid(t_cmd *cmd)
+char	**get_cmd1(char **av)
 {
-	perror("Fork: ");
-	ft_free(cmd->paths);
+	char	**cmd;
+
+	cmd = ft_split(av[2], ' ');
+	return (cmd);
+}
+
+char	**get_cmd2(char **av)
+{
+	char	**cmd2;
+
+	cmd2 = ft_split(av[3], ' ');
+	return (cmd2);
+}
+
+void	my_perror(t_cmd *cmd)
+{
+	perror("Err");
 	ft_free(cmd->cmd1);
 	ft_free(cmd->cmd2);
+	free(cmd);
 	exit(EXIT_FAILURE);
 }
 
-void	_err_re(t_cmd *cmd)
+void	_err_fd(t_cmd *cmd)
 {
-	ft_free(cmd->paths);
+	perror("open");
 	ft_free(cmd->cmd1);
 	ft_free(cmd->cmd2);
-	perror("Pipe");
-	exit(EXIT_FAILURE);
-}
-
-void	_err_pid2(t_cmd *cmd)
-{
-	perror("Fork: ");
 	ft_free(cmd->paths);
-	ft_free(cmd->cmd1);
-	ft_free(cmd->cmd2);
+	free(cmd);
 	exit(EXIT_FAILURE);
 }

@@ -1,9 +1,9 @@
 NAME = pipex
 SRCS = pipex.c \
 	ft_child.c ft_child2.c libft/libft.a \
-	pipex_utils.c
+	pipex_utils.c ft_pipex_utils.c
 
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 
 .SILENT: OTHERS = cd libft && make && cd ..
 
