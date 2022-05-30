@@ -17,18 +17,15 @@
  * 			- The child process has a different parent process ID (i.e., the
  * 										.... process ID of the parent process).
  *		Todo: check return of split is not null ?
+ *		!protect execve
  */
 
-void	ft_free(char **str)
+void	parent(t_cmd *cmd)
 {
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
+	close(cmd->fds[0]);
+	close(cmd->fds[1]);
+	waitpid(-1, &cmd->stat, 0);
+	//waitpid(-1, &cmd->stat, 0);
 }
 
 int	ft_strline(char **paths)
@@ -66,7 +63,7 @@ char	**get_paths(char **env)
 	return (tmp);
 }
 
-void	ft_exec(t_cmd *cmd)
+void	ft_exec(t_cmd *cmd, char **av)
 {
 	cmd->re = pipe(cmd->fds);
 	if (cmd->re < 0)
@@ -75,16 +72,23 @@ void	ft_exec(t_cmd *cmd)
 	if (cmd->pid == -1)
 		ft_err_pid(cmd);
 	else if (cmd->pid == 0)
+	{
+		cmd->fd1 = open(av[1], O_RDONLY);
+		if (cmd->fd1 == -1)
+			_err_fd1(cmd, av);
 		ft_exc_cmd1(cmd);
+	}
 	cmd->pid2 = fork();
 	if (cmd->pid2 < 0)
 		_err_pid2(cmd);
 	else if (cmd->pid2 == 0)
+	{
+		cmd->fd2 = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+		if (cmd->fd2 == -1)
+			_err_fd2(cmd, av);
 		ft_exc_cmd2(cmd);
-	close(cmd->fds[0]);
-	close(cmd->fds[1]);
-	waitpid(-1, &cmd->stat, 0);
-	waitpid(-1, &cmd->stat, 0);
+	}
+	parent(cmd);
 }
 
 int	main(int ac, char *av[], char *evp[])
@@ -94,16 +98,11 @@ int	main(int ac, char *av[], char *evp[])
 	cmd = malloc(sizeof(t_cmd));
 	if (ac == 5)
 	{
+		cmd->env = evp;
 		cmd->cmd1 = get_cmd1(av);
 		cmd->cmd2 = get_cmd2(av);
-		if (cmd->cmd1 == NULL || cmd->cmd2 == NULL)
-			my_perror(cmd);
 		cmd->paths = get_paths(evp);
-		cmd->fd1 = open(av[1], O_RDONLY);
-		cmd->fd2 = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-		if (cmd->fd1 == -1 || cmd->fd2 == -1)
-			_err_fd(cmd);
-		ft_exec(cmd);
+		ft_exec(cmd, av);
 	}
 	else
 	{

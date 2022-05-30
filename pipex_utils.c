@@ -21,6 +21,25 @@ void	ft_err_pid(t_cmd *cmd)
 	exit(EXIT_FAILURE);
 }
 
+void	ft_free(char **str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+}
+
+void	my_perror1(t_cmd *cmd)
+{
+	perror("execve");
+	ft_free(cmd->cmd1);
+	exit(EXIT_FAILURE);
+}
+
 void	_err_re(t_cmd *cmd)
 {
 	ft_free(cmd->paths);

@@ -28,21 +28,25 @@ char	**get_cmd2(char **av)
 	return (cmd2);
 }
 
-void	my_perror(t_cmd *cmd)
+void	my_perror2(t_cmd *cmd)
 {
-	perror("Err");
+	perror("bash");
 	ft_free(cmd->cmd1);
 	ft_free(cmd->cmd2);
 	free(cmd);
 	exit(EXIT_FAILURE);
 }
 
-void	_err_fd(t_cmd *cmd)
+void	_err_fd1(t_cmd *cmd, char **av)
 {
-	perror("open");
+	perror(av[0]);
 	ft_free(cmd->cmd1);
+	exit(EXIT_FAILURE);
+}
+
+void	_err_fd2(t_cmd *cmd, char **av)
+{
+	perror(av[4]);
 	ft_free(cmd->cmd2);
-	ft_free(cmd->paths);
-	free(cmd);
 	exit(EXIT_FAILURE);
 }
